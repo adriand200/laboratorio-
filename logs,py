@@ -1,0 +1,41 @@
+# Simulación de un archivo de logs como una lista de registros
+"""
+adrian cañon brayan ladino andres ramirez """
+# Cada registro tiene: [nombre_usuario, hora_entrada, hora_salida]
+logs = [
+    ["ana", "08:00", "12:00"],
+    ["juan", "09:15", "10:45"],
+    ["ana", "13:00", "15:00"],
+    ["maria", "10:00", "12:30"],
+    ["juan", "16:00", "18:00"],
+    ["ana", "18:30", "20:00"]
+]
+
+# Lista para guardar temporalmente los nombres de usuario procesados
+procesados = []
+
+# Inicializamos el índice para el bucle while
+i = 0
+
+# Bucle while para leer cada registro uno por uno
+while i < len(logs):
+    registro = logs[i]  # Obtenemos el registro actual
+    nombre_usuario = registro[0]  # Extraemos el nombre del usuario
+    procesados.append(nombre_usuario)  # Guardamos el nombre en la lista de procesados
+    i += 1  # Avanzamos al siguiente registro
+
+# Lista final donde almacenaremos los resultados en formato: [usuario, número_de_accesos]
+resultados = []
+
+# Creamos una lista con los usuarios únicos usando set()
+usuarios_unicos = list(set(procesados))
+
+# Bucle for para contar cuántas veces aparece cada usuario en los registros
+for usuario in usuarios_unicos:
+    conteo = procesados.count(usuario)  # Contamos cuántas veces aparece el usuario
+    resultados.append([usuario, conteo])  # Guardamos el resultado en la lista final
+
+# Mostramos los resultados en pantalla
+print("Número de accesos por usuario:")
+for resultado in resultados:
+    print(f"{resultado[0]}: {resultado[1]} accesos")
